@@ -1,0 +1,233 @@
+[33mcommit 768795e731e88c2f7d227f69d89300b62ff243eb[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Ashraf Emon <emon.ashraf.017@gmail.com>
+Date:   Thu Sep 19 17:59:03 2024 +0600
+
+    again error fix and push
+
+[33mcommit 7cccde625e35c2930c3c53001f4c6c5b0e90a4d2[m
+Author: Ashraf Emon <emon.ashraf.017@gmail.com>
+Date:   Thu Sep 19 17:13:07 2024 +0600
+
+    payment system
+
+[33mcommit f6cc27f5d3b7e9f7388453dc37112db3d5e61667[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: Ashraf Emon <emon.ashraf.017@gmail.com>
+Date:   Mon Aug 19 12:36:17 2024 +0600
+
+    last comitte fee section
+
+[33mcommit 479612379c72e7cc0aed0b7a3091fc225b601f4c[m
+Author: Ashraf Emon <emon.ashraf.017@gmail.com>
+Date:   Mon Feb 5 13:48:59 2024 +0600
+
+    Account Teacher Salary Other Cost complete
+
+[33mcommit f802a87419d8ea77ddb0a935512ba0f8d9f3c4e8[m
+Author: Ashraf Emon <emon.ashraf.017@gmail.com>
+Date:   Tue Jan 30 14:25:12 2024 +0600
+
+    Teacher auth and lesson insert
+
+[33mcommit 43296282a9808f10f400aee4ac6655b38020c15d[m
+Author: Ashraf Emon <emon.ashraf.017@gmail.com>
+Date:   Mon Jan 29 15:05:37 2024 +0600
+
+    payment add to cart work
+
+[33mcommit 9d7da89448d19182c3fca187ab7d1ebea868030a[m
+Author: Ashraf Emon <emon.ashraf.017@gmail.com>
+Date:   Sun Jan 28 14:47:03 2024 +0600
+
+    Demo Payment Method Added
+
+[33mcommit 33c6d806cfd5b20ada6b7735cd1b56cde8c00657[m
+Author: Ashraf Emon <emon.ashraf.017@gmail.com>
+Date:   Tue Jan 23 14:45:20 2024 +0600
+
+    payment method integrate error
+
+[33mcommit f5b4c8fb6267bd845ed98469b041b6de5ef74872[m
+Author: Ashraf Emon <emon.ashraf.017@gmail.com>
+Date:   Mon Jan 22 23:57:02 2024 +0600
+
+    user role auth done
+
+[33mcommit 7b5c7326f6e09d4ee349e147548eee50308293bd[m
+Author: Ashraf Emon <emon.ashraf.017@gmail.com>
+Date:   Mon Jan 22 14:46:48 2024 +0600
+
+    auth work role manage
+
+[33mcommit 87e17dfda26fc5d207a194bf18b84bf13cd838ad[m
+Author: Ashraf Emon <emon.ashraf.017@gmail.com>
+Date:   Sun Jan 21 23:34:55 2024 +0600
+
+    spatie remove for project
+
+[33mcommit ee16038b369838a76c400abeec2aca02bdfe8893[m
+Author: Ashraf Emon <emon.ashraf.017@gmail.com>
+Date:   Sun Jan 21 15:00:49 2024 +0600
+
+    Role manage with spite
+
+[33mcommit 9987e7f6b7c7e3668bda65b3dd72f0673a24494f[m
+Author: Ashraf Emon <emon.ashraf.017@gmail.com>
+Date:   Sat Jan 20 23:39:12 2024 +0600
+
+    Payment and account student fee add
+
+[33mcommit 4fd4051d6b51dff9084893a38b04693495a60af3[m
+Author: Ashraf Emon <emon.ashraf.017@gmail.com>
+Date:   Thu Jan 18 14:39:27 2024 +0600
+
+    Account Managment Student fee working
+
+[33mcommit a35a8599bc82fc3e9121b6307882de42997ac8f4[m
+Author: Ashraf Emon <emon.ashraf.017@gmail.com>
+Date:   Wed Jan 17 23:18:19 2024 +0600
+
+    Mark Grade Add Done
+
+[33mcommit 6eebaa3046f3886e22d6b7f9204336ab65e107fb[m
+Author: Ashraf Emon <emon.ashraf.017@gmail.com>
+Date:   Wed Jan 17 14:48:16 2024 +0600
+
+    marks edit issu not fix and markes grade view done
+
+[33mcommit 9d4794ab847f50566009445e74f8a301b311c3f6[m
+Author: Ashraf Emon <emon.ashraf.017@gmail.com>
+Date:   Wed Jan 17 00:20:42 2024 +0600
+
+    Marks edit
+
+[33mcommit 8bf7ce82804554cac898d05a258012378ed2f94c[m
+Author: Ashraf Emon <emon.ashraf.017@gmail.com>
+Date:   Tue Jan 16 15:10:37 2024 +0600
+
+    last git confilict change
+
+[33mcommit ac37adeeffb3b68d2469283fb77eddb49bab338f[m
+Merge: 72f68ee 001e104
+Author: Ashraf Emon <emon.ashraf.017@gmail.com>
+Date:   Tue Jan 16 15:01:49 2024 +0600
+
+    Merge branch 'master' of https://github.com/ashrafemon0/school-management-system
+    
+    # Conflicts:
+    #       app/Http/Controllers/backend/Marks/MarksController.php
+    #       resources/views/admin/backend/Marks/marks_add.blade.php
+
+[33mcommit 72f68ee56759b44ca43007f8d70b1357e0448ee4[m
+Author: Ashraf Emon <emon.ashraf.017@gmail.com>
+Date:   Tue Jan 16 14:50:52 2024 +0600
+
+    Mark data red table show
+
+[33mcommit 001e104fcc67b0e7fd5ec022ebe34f7b2afc3527[m
+Author: Ashraf Emon <emon.ashraf.017@gmail.com>
+Date:   Mon Jan 15 00:06:10 2024 +0600
+
+    just try fix error
+
+[33mcommit dfc35630fc104ff5807c36a344352cff0f6b1ab9[m
+Merge: cc81ca5 6473810
+Author: Ashraf Emon <emon.ashraf.017@gmail.com>
+Date:   Sun Jan 14 15:09:40 2024 +0600
+
+    Merge branch 'master' of https://github.com/ashrafemon0/school-management-system
+
+[33mcommit cc81ca5075c60c02a3ff6e666c4a2fed4f75c3a1[m
+Author: Ashraf Emon <emon.ashraf.017@gmail.com>
+Date:   Sun Jan 14 15:07:26 2024 +0600
+
+    Marks entry
+
+[33mcommit 647381031b81d94a20d55f8d1d99bfc0ca0292d6[m
+Author: Ashraf Emon <emon.ashraf.017@gmail.com>
+Date:   Sun Jan 14 00:20:50 2024 +0600
+
+    Last push composr and controller
+
+[33mcommit 3cf5dbf05e8d8e9e7fc2f0471914d2df6c725c30[m
+Author: Ashraf Emon <emon.ashraf.017@gmail.com>
+Date:   Thu Jan 11 14:21:24 2024 +0600
+
+    monthly salary and pay slip
+
+[33mcommit d5ef0ab6ec334c251b676a0ebf2061315e1bd542[m
+Author: Ashraf Emon <emon.ashraf.017@gmail.com>
+Date:   Tue Jan 9 14:41:34 2024 +0600
+
+    Atten Edit Details
+
+[33mcommit 6e546f8d59b129ce5001f9eb143e1e6369adb36e[m
+Author: Ashraf Emon <emon.ashraf.017@gmail.com>
+Date:   Mon Dec 11 14:28:42 2023 +0600
+
+    Employee Leave insert but not working fix issue
+
+[33mcommit 06dd5ade4569b849674732b1706d2c974b1c5ffe[m
+Author: Ashraf Emon <emon.ashraf.017@gmail.com>
+Date:   Thu Dec 7 15:12:39 2023 +0600
+
+    Employee Attendance Store work
+
+[33mcommit 2e65f1405ffd057fe98771d8e54c1580ab44c4c9[m
+Author: Ashraf Emon <emon.ashraf.017@gmail.com>
+Date:   Wed Dec 6 14:45:20 2023 +0600
+
+    Employee Attendance design complete
+
+[33mcommit 5840961308585cb8d8b5a3e34b3ddddeec45eb20[m
+Author: Ashraf Emon <emon.ashraf.017@gmail.com>
+Date:   Tue Dec 5 14:44:50 2023 +0600
+
+    This is Employee Leave work edit route
+
+[33mcommit 98c019791ae7f54b1a22cdf4a4c2bd6aa8a6f467[m
+Author: Ashraf Emon <emon.ashraf.017@gmail.com>
+Date:   Mon Dec 4 15:12:54 2023 +0600
+
+    Employee Leave work not finished
+
+[33mcommit d7bc85e4bb0bde844825c87d39af5b2ca5e5f8c9[m
+Author: Ashraf Emon <emon.ashraf.017@gmail.com>
+Date:   Sun Dec 3 18:58:47 2023 +0600
+
+    Demo push test
+
+[33mcommit a3881fecfd58dcd3638f970a7c7eb44fa9f3b55c[m
+Author: Ashraf Emon <emon.ashraf.017@gmail.com>
+Date:   Sun Dec 3 14:53:31 2023 +0600
+
+    This is Employee Salary update
+
+[33mcommit ff256b84c63adb2539a69992488c60fd607711e4[m
+Author: Ashraf Emon <emon.ashraf.017@gmail.com>
+Date:   Tue Nov 28 17:06:28 2023 +0600
+
+    This is Employee Register update
+
+[33mcommit 8c2f63175a86ef19e8cdab4a2aea54d7dd3697e0[m
+Author: Ashraf Emon <emon.ashraf.017@gmail.com>
+Date:   Mon Nov 27 14:56:19 2023 +0600
+
+    Employee store route done
+
+[33mcommit acdfe9a15d01ee526ffda69cee9cd210f83c0b8c[m
+Author: Ashraf Emon <emon.ashraf.017@gmail.com>
+Date:   Thu Nov 23 16:43:07 2023 +0600
+
+    Student Registration Fee
+
+[33mcommit ec44b8840523e13e34e3163168af5c4769ef8a00[m
+Author: Ashraf Emon <emon.ashraf.017@gmail.com>
+Date:   Wed Nov 22 17:24:59 2023 +0600
+
+    roll generate complete
+
+[33mcommit 6c0ff3b7943b767a3fdbe969af896430152c66b5[m
+Author: Ashraf Emon <emon.ashraf.017@gmail.com>
+Date:   Tue Nov 21 18:15:56 2023 +0600
+
+    Office work update

@@ -28,7 +28,7 @@
                             </div>
 
                             <div class="box-body">
-                                <form action="{{ route('reg.fee.pay.slipe', [$class_id, $student_id]) }}" method="POST">
+                                <form action="{{ route('book.fee.pay.slipe', [$class_id, $student_id]) }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="student_id" value="{{ $student->id }}">
                                     <input type="hidden" name="class_id" value="{{ $class_id }}">
@@ -66,6 +66,13 @@
                                             <div class="form-group">
                                                 <label>Discount:</label>
                                                 <input type="text" class="form-control" name="discount" value="{{ $discount }}%" readonly>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Quantity or Set:</label>
+                                                <input type="text" class="form-control" name="qun_set" required>
                                             </div>
                                         </div>
 

@@ -28,7 +28,7 @@
                             </div>
 
                             <div class="box-body">
-                                <form action="{{ route('reg.fee.pay.slipe', [$class_id, $student_id]) }}" method="POST">
+                                <form action="{{ route('assessment.fee.pay.slipe', [$class_id, $student_id]) }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="student_id" value="{{ $student->id }}">
                                     <input type="hidden" name="class_id" value="{{ $class_id }}">

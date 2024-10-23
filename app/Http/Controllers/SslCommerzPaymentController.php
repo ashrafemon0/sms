@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Payment;
+use App\Models\Payments;
 use Illuminate\Http\Request;
 use App\Library\SslCommerz\SslCommerzNotification;
 use Illuminate\Support\Facades\DB;
@@ -16,7 +16,7 @@ class SslCommerzPaymentController extends Controller
         $storePassword = env('SSCOMMERZ_STORE_PASSWORD');
 
         // Find the payment record
-        $payment = Payment::find($request->payment_id);
+        $payment = Payments::find($request->payment_id);
 
         if (!$payment) {
             return redirect()->back()->with('error', 'Payment record not found.');
@@ -25,7 +25,7 @@ class SslCommerzPaymentController extends Controller
         // Generate a unique 'tran_id' if it's null
         if (is_null($payment->tran_id)) {
             $payment->tran_id = uniqid('tran_', true);
-            $payment->status = 'Pending';  // Set status to 'Pending'
+            $payment->status = 'Paid';  // Set status to 'Pending'
             $payment->save();
         }
 
@@ -65,7 +65,7 @@ class SslCommerzPaymentController extends Controller
 
     public function success(Request $request)
     {
-        $payment = Payment::where('tran_id', $request->tran_id)->first();
+        $payment = Payments::where('tran_id', $request->tran_id)->first();
         if ($payment) {
             $payment->status = 'Paid';  // Mark the payment as successful
             $payment->save();
@@ -77,7 +77,7 @@ class SslCommerzPaymentController extends Controller
     public function fail(Request $request)
     {
         // Mark the payment as failed
-        $payment = Payment::where('tran_id', $request->tran_id)->first();
+        $payment = Payments::where('tran_id', $request->tran_id)->first();
         $payment->payment_status = 'failed';
         $payment->save();
 
@@ -87,7 +87,7 @@ class SslCommerzPaymentController extends Controller
     public function cancel(Request $request)
     {
         // Mark the payment as canceled
-        $payment = Payment::where('tran_id', $request->tran_id)->first();
+        $payment = Payments::where('tran_id', $request->tran_id)->first();
         $payment->payment_status = 'canceled';
         $payment->save();
 

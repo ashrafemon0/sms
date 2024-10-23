@@ -5,6 +5,7 @@ namespace App\Http\Controllers\backend\StudentManagment;
 use App\Http\Controllers\Controller;
 use App\Models\AssignStudent;
 use App\Models\Payment;
+use App\Models\Payments;
 use App\Models\PromoCode;
 use App\Models\StudentClass;
 use App\Models\StudentData;
@@ -147,7 +148,7 @@ class StudentTuitionFeeController extends Controller
         // Store payment logic (if POST request) ...
 
         // Fetch all payments for the student to display
-        $payments = Payment::where('student_id', $student->id)->get();
+        $payments = Payments::where('student_id', $student->id)->get();
 
         // Pass data to the view, including payments
         return view('admin.backend.student.student_tuition_fee.pay_now', compact(

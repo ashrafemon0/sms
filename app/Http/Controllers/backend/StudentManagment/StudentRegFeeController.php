@@ -4,7 +4,10 @@ namespace App\Http\Controllers\backend\StudentManagment;
 
 use App\Http\Controllers\Controller;
 use App\Models\AssignStudent;
+use App\Models\Payment;
+use App\Models\Payments;
 use App\Models\PromoCode;
+use App\Models\RegPayment;
 use App\Models\StudentClass;
 use App\Models\StudentData;
 use App\Models\StudentFeeCategoryAmount;
@@ -120,20 +123,24 @@ class StudentRegFeeController extends Controller
         return response()->json($html);
     }
 
-    public function showPaymentPage($class_id, $student_id, Request $request) {
+    public function showPaymentPage($class_id, $student_id, Request $request)
+    {
         $feeAmount = StudentFeeCategoryAmount::where('class_id', $class_id)
-            ->where('fee_category_id', 1)
+            ->where('fee_category_id', 1) // Assuming fee_category_id = 1 is for registration fees
             ->first();
 
         // Fetch the student's data
         $student = StudentData::where('student_id', $student_id)->first();
+
         // Check if student exists
         if (!$student) {
             return redirect()->back()->with('error', 'Student not found');
         }
 
-        $totalAmount = $feeAmount->fee_category_amount;
+        // Calculate the total amount
+        $totalAmount = $feeAmount ? $feeAmount->fee_category_amount : 0;
 
+        // Handle promo code (if provided)
         $promoCode = $request->input('promo_code');
         $discount = 0;
 
@@ -141,14 +148,19 @@ class StudentRegFeeController extends Controller
         if ($promoCode) {
             $promo = PromoCode::where('code', $promoCode)->first();
             if ($promo && $promo->isValid()) {
-                $discount = $promo->discount;
-                // Calculate the total amount after discount
-                $totalAmount = $totalAmount - ($totalAmount * ($discount / 100));
+                $discount = $promo->discount; // Assume this is already a decimal value
+                $totalAmount = $totalAmount - ($totalAmount * ($discount / 100)); // Update total amount with discount
             }
         }
 
-        return view('admin.backend.student.student_reg_fee.payment_page', compact('feeAmount', 'totalAmount', 'discount','student'));
+        // Fetch previous payments for this student
+        $payments = Payments::where('student_id', $student->id)->get();
+
+        // Pass data to the view
+        return view('admin.backend.student.student_reg_fee.payment_page', compact('feeAmount', 'totalAmount', 'discount', 'student', 'payments', 'class_id', 'student_id'));
     }
+
+
 
 
 

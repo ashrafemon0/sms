@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Payments;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Library\SslCommerz\SslCommerzNotification;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class SslCommerzPaymentController extends Controller
 {
@@ -18,25 +20,29 @@ class SslCommerzPaymentController extends Controller
         // Find the payment record
         $payment = Payments::find($request->payment_id);
 
+
         if (!$payment) {
             return redirect()->back()->with('error', 'Payment record not found.');
         }
 
+        // Store the logged-in user ID
+        $payment->user_id = Auth::id(); // Assuming `user_id` is a field in the `payments` table
+
         // Generate a unique 'tran_id' if it's null
         if (is_null($payment->tran_id)) {
             $payment->tran_id = uniqid('tran_', true);
-            $payment->status = 'Paid';  // Set status to 'Pending'
+            $payment->status = 'Pending';
             $payment->save();
         }
 
         $post_data = [
-            'total_amount' => $payment->amount + $payment->late_fee,  // Ensure the total amount includes the late fee
+            'total_amount' => $payment->amount + $payment->late_fee,
             'currency' => "BDT",
             'tran_id' => $payment->tran_id,
-            'success_url' => route('payment.success'),  // Now you can use route() here
-            'fail_url' => route('payment.fail'),
-            'cancel_url' => route('payment.cancel'),
-            'cus_name' => $request->student_id,
+            'success_url' => route('payment.success', [], true),
+            'failed_url' => route('payment.fail', [], true),
+            'cancel_url' => route('payment.cancel', [], true),
+            'cus_name' => Auth::user()->name, // Replace with actual user name if available
             'cus_email' => 'customer@example.com',
             'cus_phone' => '01711111111',
             'cus_add1' => 'Dhaka',
@@ -60,19 +66,40 @@ class SslCommerzPaymentController extends Controller
     }
 
 
-
-
-
     public function success(Request $request)
     {
-        $payment = Payments::where('tran_id', $request->tran_id)->first();
-        if ($payment) {
-            $payment->status = 'Paid';  // Mark the payment as successful
-            $payment->save();
-        }
+        $tranId = $request->tran_id;
 
-        return view('admin.backend.payment.success', ['payment' => $payment]);
+        // Retrieve the payment record
+        $payment = Payments::where('tran_id', $tranId)->first();
+
+        if ($payment) {
+            // Retrieve the user associated with this payment
+            $user = User::find($payment->user_id);
+
+            if ($user) {
+                Auth::login($user);  // Log the user back in after payment is successful
+            }
+
+            // Update the payment status to 'Paid'
+            $payment->status = 'Paid';
+            $payment->save();
+
+            // Pass the payment and user data to the view
+            return view('admin.backend.payment.success', [
+                'payment' => $payment,
+                'user' => $user,
+            ]);
+        } else {
+            // Handle error if payment or user not found
+            return redirect()->back()->with('error', 'Payment or user not found.');
+        }
     }
+
+
+
+
+
 
     public function fail(Request $request)
     {

@@ -13,13 +13,17 @@ use App\Models\StudentData;
 use App\Models\StudentFeeCategoryAmount;
 use App\Models\StudentYear;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use PDF;
 
 class StudentRegFeeController extends Controller
 {
     public function StudentRegFeeView(){
-        $data['studentClass'] = StudentClass::all();
-        $data['studentYear'] = StudentYear::all();
+
+        $user = auth()->user();
+
+        $data['studentClass'] = StudentData::where('student_id', $user->user_id)->pluck('class_id'); // Fetch only the class for the logged-in user
+        $data['studentYear'] = StudentData::where('student_id', $user->user_id)->pluck('year_id');
         return view('admin.backend.student.student_reg_fee.registration_fee_view',$data);
     }
 
@@ -80,7 +84,55 @@ class StudentRegFeeController extends Controller
 //        return response()->json($html);
 //    }
 
+//    public function RegFeeClassWiseGet(Request $request) {
+//        $year_id = $request->year_id;
+//        $class_id = $request->class_id;
+//        $user_id = Auth::id(); // Get the ID of the logged-in user
+//
+//        $where = [];
+//        if ($year_id != '') {
+//            $where[] = ['
+//year_id', $year_id];
+//        }
+//        if ($class_id != '') {
+//            $where[] = ['class_id', $class_id];
+//        }
+//
+//        // Fetch only the logged-in user's data
+//        $allStudents = StudentData::where($where)
+//            ->where('user_id', $user_id) // Filter by the logged-in user
+//            ->get();
+//
+//        $html['thsource'] = '<th>SL NO</th>';
+//        $html['thsource'] .= '<th>Student ID</th>';
+//        $html['thsource'] .= '<th>Student Name</th>';
+//        $html['thsource'] .= '<th>Fee Category</th>';
+//        $html['thsource'] .= '<th>Fee Amount</th>';
+//        $html['thsource'] .= '<th>Action</th>';
+//
+//        foreach ($allStudents as $key => $student) {
+//            // Fetch fee category amount for the student class
+//            $feeAmount = StudentFeeCategoryAmount::where('class_id', $class_id)
+//                ->where('fee_category_id', '1') // Assuming registration fee category ID is 1
+//                ->first();
+//
+//            $html[$key]['tdsource'] = '<td>'.($key + 1).'</td>';
+//            $html[$key]['tdsource'] .= '<td>'.$student->student_id.'</td>'; // Student ID
+//            $html[$key]['tdsource'] .= '<td>'.$student->name.'</td>'; // Student Name
+//            $html[$key]['tdsource'] .= '<td>Registration Fee</td>'; // Fee Category
+//            $html[$key]['tdsource'] .= '<td>'.$feeAmount->fee_category_amount.' Tk</td>'; // Fee Amount
+//
+//            // Action button for payment
+//            $html[$key]['tdsource'] .= '<td>';
+//            $html[$key]['tdsource'] .= '<a class="btn btn-sm btn-success" title="PaySlip" target="_blank" href="'.route("student.registration.fee.payment", ['class_id' => $student->class_id, 'student_id' => $student->student_id]).'">Pay Now</a>';
+//            $html[$key]['tdsource'] .= '</td>';
+//        }
+//
+//        return response()->json($html);
+//    }
+
     public function RegFeeClassWiseGet(Request $request) {
+
         $year_id = $request->year_id;
         $class_id = $request->class_id;
 
@@ -91,9 +143,14 @@ class StudentRegFeeController extends Controller
         if ($class_id != '') {
             $where[] = ['class_id', $class_id];
         }
+        // Get the logged-in user's user_id
+        $userId = auth()->user()->user_id;
 
         // Fetch students based on year and class
-        $allStudents = StudentData::where($where)->get();
+        $allStudents =  StudentData::where('student_id', $userId)
+            ->where('year_id', $year_id)
+            ->where('class_id', $class_id)
+            ->get();
 
         $html['thsource'] = '<th>SL NO</th>';
         $html['thsource'] .= '<th>Student ID</th>';
@@ -125,6 +182,7 @@ class StudentRegFeeController extends Controller
 
     public function showPaymentPage($class_id, $student_id, Request $request)
     {
+
         $feeAmount = StudentFeeCategoryAmount::where('class_id', $class_id)
             ->where('fee_category_id', 1) // Assuming fee_category_id = 1 is for registration fees
             ->first();

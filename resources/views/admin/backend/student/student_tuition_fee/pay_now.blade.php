@@ -26,6 +26,20 @@
                             <div class="box-header">
                                 <h4 class="box-title">Student <strong>Payment Details</strong></h4>
                             </div>
+                            @if (session('error'))
+                                <div class="alert alert-danger" id="errorMessage">
+                                    {{ session('error') }}
+                                </div>
+
+                                <script>
+                                    // Show the error message and reload the page after 3 seconds
+                                    window.onload = function() {
+                                        setTimeout(function() {
+                                            location.reload(); // This will reload the page
+                                        }, 3000); // Adjust the delay in milliseconds (3000ms = 3 seconds)
+                                    };
+                                </script>
+                            @endif
 
                             <div class="box-body">
                                 <form action="{{ route('tuition.fee.pay.slipe', [$class_id, $student_id]) }}" method="POST">
@@ -42,7 +56,8 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Date:</label>
-                                                <input type="date" class="form-control" name="payment_date" value="{{ old('payment_date') }}" required>
+                                                <input type="date" class="form-control" name="payment_date" value="{{ date('Y-m-d') }}" required readonly>
+
                                             </div>
                                         </div>
 

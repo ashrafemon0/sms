@@ -54,6 +54,12 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::post('/payment', [SslCommerzPaymentController::class, 'initiatePayment'])->name('payment.initiate');
+Route::match(['get', 'post'], '/success', [SslCommerzPaymentController::class, 'success'])->name('payment.success');
+Route::match(['get', 'post'], '/student/payment/fail', [SslCommerzPaymentController::class, 'fail'])->name('payment.fail');
+Route::match(['get', 'post'], '/student/payment/cancel', [SslCommerzPaymentController::class, 'cancel'])->name('payment.cancel');
+
+Route::get('/payment/{tran_id}/download-receipt', [PaymentController::class, 'downloadReceipt'])->name('payment.download_receipt');
 
 Route::get('/', function () {
     return view('auth.login');
@@ -219,7 +225,7 @@ Route::prefix('student')->group(function (){
 
     Route::get('student/book/fee/payment/{class_id}/{student_id}', [StudentBookFeeController::class, 'showBookPaymentPage'])->name('student.book.fee.payment');
 
-    Route::match(['get', 'post'], '/book-fee-pay-slip/{class_id}/{student_id}', [PaymentController::class, 'bookPayment'])->name('book.fee.pay.slipe');
+    Route::match(['get', 'post'], '/book-fee-pay-slip/{class_id}/{student_id}', [PaymentController::class, 'bookPayment'])->name('book.fee.pay.slip');
 
 
     //Student T-shirt Fee Route
@@ -229,7 +235,7 @@ Route::prefix('student')->group(function (){
 
     Route::get('student/tshirt/fee/payment/{class_id}/{student_id}', [StudentTshirtFeeController::class, 'showTshirtPaymentPage'])->name('student.tshirt.fee.payment');
 
-    Route::match(['get', 'post'], '/book-fee-pay-slip/{class_id}/{student_id}', [PaymentController::class, 'TshirtPayment'])->name('tshirt.fee.pay.slipe');
+    Route::match(['get', 'post'], '/tshirt-fee-pay-slip/{class_id}/{student_id}', [PaymentController::class, 'TshirtPayment'])->name('tshirt.fee.pay.slipe');
 
 
     //Student Assessment Fee Route
@@ -430,12 +436,81 @@ Route::middleware(['student'])->group(function () {
 
 
 // SSLCOMMERZ Start
-        Route::post('/payment', [SslCommerzPaymentController::class, 'initiatePayment'])->name('payment.initiate');
-        Route::post('/student/payment/success', [SslCommerzPaymentController::class, 'success'])->name('payment.success');
-        Route::post('/student/payment/fail', [SslCommerzPaymentController::class, 'fail'])->name('payment.fail');
-        Route::post('/student/payment/cancel', [SslCommerzPaymentController::class, 'cancel'])->name('payment.cancel');
+
+
 
 //SSLCOMMERZ END
+    });
+    Route::prefix('student')->group(function (){
+        Route::get('/reg/view',[StudentRegController::class,'StudentRegView'])->name('student.reg');
+        Route::get('/reg/add',[StudentRegController::class,'AddStudent'])->name('add.student');
+        Route::post('/reg/store',[StudentRegController::class,'StoreRegistration'])->name('store.student.reg');
+
+        Route::get('/reg/search',[StudentRegController::class,'SearchStudent'])->name('student.class.year.wise');
+        Route::get('/reg/edit/{student_id}',[StudentRegController::class,'StudentRegEdit'])->name('student.reg.edit');
+        Route::post('/reg/update/{student_id}}',[StudentRegController::class,'StudentRegUpdate'])->name('update.student.reg');
+
+        //Student Promotion Route
+
+
+        //Student Roll Generate Route
+
+
+        //Student Registration Fee Route
+        Route::get('/reg/fee/view',[StudentRegFeeController::class,'StudentRegFeeView'])->name('student.registration.fee');
+        Route::get('/reg/fee/classwiseget',[StudentRegFeeController::class,'RegFeeClassWiseGet'])->name('student.registration.fee.classwise.get');
+        Route::get('/reg/fee/payslip',[StudentRegFeeController::class,'RegFeePaySlip'])->name('student.registration.fee.payslip');
+
+        Route::get('student/registration/fee/payment/{class_id}/{student_id}', [StudentRegFeeController::class, 'showPaymentPage'])->name('student.registration.fee.payment');
+
+        Route::match(['get', 'post'], '/reg-fee-pay-slip/{class_id}/{student_id}', [PaymentController::class, 'RegPayment'])->name('reg.fee.pay.slipe');
+
+
+        //Student Tuition Fee Route
+        Route::get('/tuition/fee/view',[StudentTuitionFeeController::class,'StudentTuitionFeeView'])->name('student.tuition.fee');
+        Route::get('/tuition/fee/classwiseget',[StudentTuitionFeeController::class,'TuitionFeeClassWiseGet'])->name('student.tuition.fee.classwise.get');
+        Route::get('/tuition/fee/payslip',[StudentTuitionFeeController::class,'TuitionFeePaySlip'])->name('student.tuition.fee.payslip');
+
+        Route::get('student/tuition/fee/payment/{class_id}/{student_id}', [StudentTuitionFeeController::class, 'TuitionFeePaySlip'])->name('student.tuition.fee.payment');
+
+        Route::match(['get', 'post'], '/tuition-fee-pay-slip/{class_id}/{student_id}', [PaymentController::class, 'TuitionFeePaySlip'])->name('tuition.fee.pay.slipe');
+
+
+        //Student Exam Fee Route
+        Route::get('/tuition/exam/view',[StudentExampFeeController::class,'StudentExamFeeView'])->name('student.exam.fee');
+        Route::get('/tuition/exam/classwiseget',[StudentExampFeeController::class,'ExamFeeClassWiseGet'])->name('student.exam.fee.classwise.get');
+        Route::get('/tuition/exam/payslip',[StudentExampFeeController::class,'ExamFeePaySlip'])->name('student.exam.fee.payslip');
+
+        //Student Book Fee Route
+        Route::get('/book/fee/view',[StudentBookFeeController::class,'StudentBookFeeView'])->name('student.book.fee');
+        Route::get('/book/fee/classwiseget',[StudentBookFeeController::class,'BookFeeClassWiseGet'])->name('student.book.fee.classwise.get');
+        Route::get('/book/fee/payslip',[StudentBookFeeController::class,'BookFeePaySlip'])->name('student.book.fee.payslip');
+
+        Route::get('student/book/fee/payment/{class_id}/{student_id}', [StudentBookFeeController::class, 'showBookPaymentPage'])->name('student.book.fee.payment');
+
+        Route::match(['get', 'post'], '/book-fee-pay-slip/{class_id}/{student_id}', [PaymentController::class, 'bookPayment'])->name('book.fee.pay.slip');
+
+
+        //Student T-shirt Fee Route
+        Route::get('/t-shirt/fee/view',[StudentTshirtFeeController::class,'StudentTshirtFeeView'])->name('student.t-shirt.fee');
+        Route::get('/t-shirt/fee',[StudentTshirtFeeController::class,'StudentTshirtFee'])->name('student.tshirt.fee');
+        Route::get('/t-shirt/fee/payslip',[StudentTshirtFeeController::class,'BookFeePaySlip'])->name('student.book.fee.payslip');
+
+        Route::get('student/tshirt/fee/payment/{class_id}/{student_id}', [StudentTshirtFeeController::class, 'showTshirtPaymentPage'])->name('student.tshirt.fee.payment');
+
+        Route::match(['get', 'post'], '/tshirt-fee-pay-slip/{class_id}/{student_id}', [PaymentController::class, 'TshirtPayment'])->name('tshirt.fee.pay.slipe');
+
+
+        //Student Assessment Fee Route
+        Route::get('/assessment/fee/view',[StudentAssessmentFeeController::class,'StudentAssessmentFeeView'])->name('student.assessment.fee');
+        Route::get('/assessment/fee',[StudentAssessmentFeeController::class,'StudentAssessmentFee'])->name('student.assessments.fee');
+        Route::get('/t-shirt/fee/payslip',[StudentAssessmentFeeController::class,'BookFeePaySlip'])->name('student.book.fee.payslip');
+
+        Route::get('student/assessment/fee/payment/{class_id}/{student_id}', [StudentAssessmentFeeController::class, 'showAssessmentPaymentPage'])->name('student.assessment.fee.payment');
+
+        Route::match(['get', 'post'], '/assessment-fee-pay-slip/{class_id}/{student_id}', [PaymentController::class, 'AssessmentPayment'])->name('assessment.fee.pay.slipe');
+
+
     });
 });
 

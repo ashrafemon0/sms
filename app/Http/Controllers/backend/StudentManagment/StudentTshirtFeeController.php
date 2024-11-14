@@ -15,8 +15,11 @@ use Illuminate\Http\Request;
 class StudentTshirtFeeController extends Controller
 {
     public function StudentTshirtFeeView(){
-        $data['studentClass'] = StudentClass::all();
-        $data['studentYear'] = StudentYear::all();
+
+        $user = auth()->user();
+
+        $data['studentClass'] = StudentData::where('student_id', $user->user_id)->pluck('class_id'); // Fetch only the class for the logged-in user
+        $data['studentYear'] = StudentData::where('student_id', $user->user_id)->pluck('year_id');
         return view('admin.backend.student.Student_Tshirt_Fee.tshirt_fee_view',$data);
     }
 
@@ -77,7 +80,14 @@ class StudentTshirtFeeController extends Controller
         }
 
         // Fetch students based on year and class
-        $allStudents = StudentData::where($where)->get();
+        // Get the logged-in user's user_id
+        $userId = auth()->user()->user_id;
+
+        // Fetch the student data where student_id matches user_id
+        $allStudents = StudentData::where('student_id', $userId)
+            ->where('year_id', $year_id)
+            ->where('class_id', $class_id)
+            ->get();
 
         $html['thsource'] = '<th>SL NO</th>';
         $html['thsource'] .= '<th>Student ID</th>';

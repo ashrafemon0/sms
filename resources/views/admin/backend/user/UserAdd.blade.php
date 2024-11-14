@@ -52,6 +52,13 @@
                                                     <input type="email" name="email" class="form-control" required="" data-validation-required-message="This field is required"> <div class="help-block"></div></div>
                                             </div>
                                         </div>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <h5>User ID <span class="text-danger">*</span></h5>
+                                                <div class="controls">
+                                                    <input type="text" name="user_id" class="form-control" required="" data-validation-required-message="This field is required"> <div class="help-block"></div></div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="text-xs-right">
                                         <input type="submit" class="btn btn-info" value="Submit">

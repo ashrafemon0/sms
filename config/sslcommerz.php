@@ -18,7 +18,7 @@ return [
     ],
     'apiDomain' => $apiDomain,
     'connect_from_localhost' => env("IS_LOCALHOST", true), // For Sandbox testing, set to true
-    'success_url' => '/student/student/payment/success',
+    'success_url' => '/Laravel/school/sms/public/success',
     'failed_url' => '/fail',
     'cancel_url' => '/cancel',
     'ipn_url' => '/ipn',

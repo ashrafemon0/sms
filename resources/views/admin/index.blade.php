@@ -115,7 +115,7 @@
                                                         <div id="chart41"></div>
                                                     </div>
                                                     <div>
-                                                        <h5>Top Order</h5>
+                                                        <h5>Total Pay</h5>
                                                         <h4 class="text-white my-0 font-weight-500">$39k</h4>
                                                     </div>
                                                 </div>
@@ -130,7 +130,7 @@
                                                         <div id="chart42"></div>
                                                     </div>
                                                     <div>
-                                                        <h5>Average Order</h5>
+                                                        <h5>Total Due</h5>
                                                         <h4 class="text-white my-0 font-weight-500">$24k</h4>
                                                     </div>
                                                 </div>
@@ -147,7 +147,7 @@
                             <div class="box-body text-center">
                                 <img src="../images/trophy.png" class="mt-50" alt="" />
                                 <div class="max-w-500 mx-auto">
-                                    <h2 class="text-white mb-20 font-weight-500">Best Employee Johen,</h2>
+                                    <h2 class="text-white mb-20 font-weight-500">Profit</h2>
                                     <p class="text-white-50 mb-10 font-size-20">You've got 50.5% more sales today. You've reached 8th milestone, checkout author section</p>
                                 </div>
                             </div>
@@ -158,7 +158,7 @@
                                     <div class="box-body pb-0">
                                         <div>
                                             <h2 class="text-white mb-0 font-weight-500">18.8k</h2>
-                                            <p class="text-mute mb-0 font-size-20">Total users</p>
+                                            <p class="text-mute mb-0 font-size-20">Total Earn</p>
                                         </div>
                                     </div>
                                     <div class="box-body p-0">
@@ -171,7 +171,7 @@
                                     <div class="box-body pb-0">
                                         <div>
                                             <h2 class="text-white mb-0 font-weight-500">35.8k</h2>
-                                            <p class="text-mute mb-0 font-size-20">Average reach per post</p>
+                                            <p class="text-mute mb-0 font-size-20">Total Cost</p>
                                         </div>
                                     </div>
                                     <div class="box-body p-0">
@@ -185,7 +185,7 @@
                         <div class="box">
                             <div class="box-header">
                                 <h4 class="box-title align-items-start flex-column">
-                                    New Arrivals
+                                    Payment Summary
                                     <small class="subtitle">More than 400+ new members</small>
                                 </h4>
                             </div>

@@ -17,9 +17,11 @@ use niklasravnsborg\LaravelPdf\Facades\Pdf;
 class StudentBookFeeController extends Controller
 {
     public function StudentBookFeeView() {
-        $data['studentClass'] = StudentClass::all();
-        $data['studentYear'] = StudentYear::all();
-        $data['studentFeeCategory'] = StudentFeeCategory::all();
+
+        $user = auth()->user();
+
+        $data['studentClass'] = StudentData::where('student_id', $user->user_id)->pluck('class_id'); // Fetch only the class for the logged-in user
+        $data['studentYear'] = StudentData::where('student_id', $user->user_id)->pluck('year_id');
         return view('admin.backend.student.Student_Book_Fee.book_fee_view', $data);
     }
 //    public function BookFeeClassWiseGet(Request $request) {
@@ -91,8 +93,14 @@ class StudentBookFeeController extends Controller
             $where[] = ['class_id', $class_id];
         }
 
-        // Fetch students based on year and class
-        $allStudents = StudentData::where($where)->get();
+        // Get the logged-in user's user_id
+        $userId = auth()->user()->user_id;
+
+        // Fetch the student data where student_id matches user_id
+        $allStudents = StudentData::where('student_id', $userId)
+            ->where('year_id', $year_id)
+            ->where('class_id', $class_id)
+            ->get();
 
         $html['thsource'] = '<th>SL NO</th>';
         $html['thsource'] .= '<th>Student ID</th>';

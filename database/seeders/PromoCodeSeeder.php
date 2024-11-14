@@ -14,15 +14,9 @@ class PromoCodeSeeder extends Seeder
     public function run()
     {
         PromoCode::create([
-            'code' => 'DISCOUNT50',
-            'discount' => 50,
-            'expiration_date' => '2024-12-31',
-        ]);
-
-        PromoCode::create([
-            'code' => 'SAVE20',
-            'discount' => 20,
-            'expiration_date' => '2024-10-31',
+            'code' => 'SAVE30',
+            'discount' => 30,
+            'expiration_date' => '2025-11-30',
         ]);
     }
 }

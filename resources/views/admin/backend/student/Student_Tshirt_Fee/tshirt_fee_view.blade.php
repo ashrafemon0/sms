@@ -33,8 +33,8 @@
                                             <div class="controls">
                                                 <select name="year_id" id="year_id" required="" class="form-control">
                                                     <option value="">Select User Year</option>
-                                                    @foreach($studentYear as $studentYears)
-                                                        <option value="{{$studentYears->id}}" >{{$studentYears->year}}</option>
+                                                    @foreach($studentYear as $yearId)
+                                                        <option value="{{ $yearId }}">{{ \App\Models\StudentYear::find($yearId)->year }}</option>
                                                     @endforeach
 
                                                 </select>
@@ -53,8 +53,8 @@
                                             <div class="controls">
                                                 <select name="class_id" id="class_id" required="" class="form-control">
                                                     <option value="">Select User Class</option>
-                                                    @foreach($studentClass as $studentClasses)
-                                                        <option value="{{$studentClasses->id}}" >{{$studentClasses->name}}</option>
+                                                    @foreach($studentClass as $classId)
+                                                        <option value="{{ $classId }}">{{ \App\Models\StudentClass::find($classId)->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>

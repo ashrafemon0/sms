@@ -16,4 +16,5 @@ class StudentFeeCategory extends Model
         return $this->hasOne(StudentFeeCategoryAmount::class, 'fee_category_id', 'id');
     }
 
+
 }

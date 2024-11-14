@@ -19,7 +19,8 @@ class UserController extends Controller
     public function UserStore(Request $request){
         $validateData = $request->validate([
             'email'=> 'required|unique:users',
-            'name'=>'required'
+            'name'=>'required',
+            'user_id'=>'required'
         ]);
 
         $data = new User();
@@ -28,9 +29,11 @@ class UserController extends Controller
         $data->role = $request->role;
         $data->name = $request->name;
         $data->email = $request->email;
-        $data->password = bcrypt($code);
+        $data->user_id = $request->user_id;
+        $data->password = $code;
         $data->code = $code;
         $data->save();
+
 
         $notification = array(
             'message' => 'User Added Successfully',

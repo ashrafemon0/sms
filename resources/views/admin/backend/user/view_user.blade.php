@@ -22,12 +22,14 @@
                                     <div id="example1_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"><div class="dataTables_length" id="example1_length"><label>Show <select name="example1_length" aria-controls="example1" class="form-control form-control-sm"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div></div><div class="col-sm-12 col-md-6"><div id="example1_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control form-control-sm" placeholder="" aria-controls="example1"></label></div></div></div><div class="row"><div class="col-sm-12"><table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                                                     <thead>
                                                         <tr role="row">
-                                                            <th style="width: 20.562px;">SL</th>
-                                                            <th  style="width: 150.562px;">Name</th>
-                                                            <th  style="width: 200.312px;">Email</th>
-                                                            <th  style="width: 100.312px;">Code</th>
-                                                            <th  style="width: 90.5156px;">Role</th>
-                                                            <th  style="width: 100.469px;">Action</th>
+                                                            <th>SL</th>
+                                                            <th>Name</th>
+                                                            <th>Email</th>
+                                                            <th>User_id</th>
+                                                            <th>Code</th>
+                                                            <th>Password</th>
+                                                            <th>Role</th>
+                                                            <th>Action</th>
                                                     </thead>
                                                     @foreach($allData as $key => $viewUsers)
                                                     <tbody>
@@ -36,7 +38,9 @@
                                                             <td class="sorting_1">{{$key +1}}</td>
                                                             <td class="sorting_1">{{$viewUsers->name}}</td>
                                                             <td>{{$viewUsers->email}}</td>
+                                                            <td>{{$viewUsers->user_id}}</td>
                                                             <td>{{$viewUsers->code}}</td>
+                                                            <td>{{$viewUsers->password}}</td>
                                                             <td>{{$viewUsers->role}}</td>
                                                             <td>
                                                                 <a class="btn btn-info" href="{{route("user.edit",$viewUsers->id)}}">Edit</a>

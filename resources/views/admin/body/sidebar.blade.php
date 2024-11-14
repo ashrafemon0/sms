@@ -2,6 +2,7 @@
     $prefix = Request::route()->getPrefix();
     $route = Route::current()->getName();
  @endphp
+
 <aside class="main-sidebar">
     <!-- sidebar-->
     <section class="sidebar">
@@ -12,7 +13,7 @@
                     <!-- logo for regular state and mobile devices -->
                     <div class="d-flex align-items-center justify-content-center">
                         <img src="../images/logo-dark.png" alt="">
-                        <h3><b>Sunny</b> Admin</h3>
+                        <h3><b>Learning</b> Tree</h3>
                     </div>
                 </a>
             </div>
@@ -101,7 +102,7 @@
 
             @endif
             @if(Auth::user()->role == 'student')
-                <li class="treeview {{($prefix == '/Student_role')?'active':''}}">
+                <li class="treeview {{($prefix == '/student')?'active':''}}">
                     <a href="#">
                         <i data-feather="message-circle"></i>
                         <span>Student Management</span>
@@ -111,14 +112,12 @@
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="{{route('student.reg')}}"><i class="ti-more"></i>Student Registration</a></li>
+                        <li><a href="{{route('student.registration.fee')}}"><i class="ti-more"></i>Registration Fee</a></li>
                         <li><a href="{{route('student.tuition.fee')}}"><i class="ti-more"></i>Tuition Fee</a></li>
                         <li><a href="{{route('student.book.fee')}}"><i class="ti-more"></i>Book Fee</a></li>
                         <li><a href="{{route('student.t-shirt.fee')}}"><i class="ti-more"></i>T-Shirt Fee</a></li>
                         <li><a href="{{route('student.assessment.fee')}}"><i class="ti-more"></i>Assessment Fee</a></li>
                         <li><a href="{{route('student.exam.fee')}}"><i class="ti-more"></i>Exam Fee</a></li>
-                        <li><a href="{{route('product.add.cart')}}"><i class="ti-more"></i>Add to Cart</a></li>
-                        <li><a href="{{route('student.payment.add')}}"><i class="ti-more"></i>Payment</a></li>
-                        <li><a href="{{route('student.testPayment.add')}}"><i class="ti-more"></i>Test Payment</a></li>
 
                     </ul>
                 </li>

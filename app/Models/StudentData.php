@@ -15,5 +15,9 @@ class StudentData extends Model
         'student_id',
         'pdf_path',
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
 }
